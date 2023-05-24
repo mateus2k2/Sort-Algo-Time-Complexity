@@ -1,6 +1,6 @@
 //https://www.programiz.com/dsa/radix-sort
 
-#include <stdio.h>
+#include "headers/radixSort.h"
 
 int getMax(int array[], int n){
     int max = array[0];

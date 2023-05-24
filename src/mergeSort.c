@@ -1,6 +1,6 @@
 // https://www.programiz.com/dsa/merge-sort
 
-#include <stdio.h>
+#include "headers/mergeSort.h"
 
 void merge(int arr[], int p, int q, int r){
 

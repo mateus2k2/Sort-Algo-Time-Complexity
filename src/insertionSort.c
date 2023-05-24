@@ -1,6 +1,6 @@
 // https://www.programiz.com/dsa/insertion-sort
 
-#include <stdio.h>
+#include "headers/insertionSort.h"
 
 void insertionSort(int array[], int size){
     for (int step = 1; step < size; step++){
