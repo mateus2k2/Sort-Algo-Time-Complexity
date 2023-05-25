@@ -16,14 +16,12 @@ void printArray(int array[], const char string[], int size, double tempoGasto) {
     }
 }
 
-int* generateInstancia(int n) {
-    int* array = (int*)malloc(n * sizeof(int));
+void generateInstancia(int *array, int size) {
 
-    for (int i = 0; i < n; i++) {
-        array[i] = rand() % n;
+    for (int i = 0; i < size; i++) {
+        array[i] = rand() % size;
     }
 
-    return array;
 }
 
 int main(int argc, char* argv[]) {
@@ -41,8 +39,9 @@ int main(int argc, char* argv[]) {
         printf("Tamanho Instancia %i\n", i);
         for (int j = 0; j < 20; j++) {
             printf("\n\n\n***Instancia %i/20***\n", j + 1);
-            int* instancia = generateInstancia(i);
             size = i;
+            int* instancia = (int*)malloc(size * sizeof(int));
+            generateInstancia(instancia, size);
 
             int* instanciaInsertionSort = (int*)malloc(size * sizeof(int));
             memcpy(instanciaInsertionSort, instancia, size * sizeof(int));

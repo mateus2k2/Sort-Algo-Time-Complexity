@@ -1,46 +1,33 @@
-//https://www.programiz.com/dsa/radix-sort
+// //https://www.programiz.com/dsa/radix-sort
 
 #include "headers/radixSort.h"
 
-int getMax(int array[], int n){
-    int max = array[0];
-    for (int i = 1; i < n; i++)
-        if (array[i] > max)
-            max = array[i];
-    return max;
-}
 
-void countingSort(int array[], int size, int place){
-    int output[size + 1];
-    int max = (array[0] / place) % 10;
+void radixsort(int vetor[], int tamanho) {
+    int i;
+    int *b;
+    int maior = vetor[0];
+    int exp = 1;
 
-    for (int i = 1; i < size; i++){
-        if (((array[i] / place) % 10) > max)
-            max = array[i];
-    }
-    int count[max + 1];
+    b = (int *)calloc(tamanho, sizeof(int));
 
-    for (int i = 0; i < max; ++i)
-        count[i] = 0;
-
-    for (int i = 0; i < size; i++)
-        count[(array[i] / place) % 10]++;
-
-    for (int i = 1; i < 10; i++)
-        count[i] += count[i - 1];
-
-    for (int i = size - 1; i >= 0; i--){
-        output[count[(array[i] / place) % 10] - 1] = array[i];
-        count[(array[i] / place) % 10]--;
+    for (i = 0; i < tamanho; i++) {
+        if (vetor[i] > maior)
+    	    maior = vetor[i];
     }
 
-    for (int i = 0; i < size; i++)
-        array[i] = output[i];
-}
+    while (maior/exp > 0) {
+        int bucket[10] = { 0 };
+    	for (i = 0; i < tamanho; i++)
+    	    bucket[(vetor[i] / exp) % 10]++;
+    	for (i = 1; i < 10; i++)
+    	    bucket[i] += bucket[i - 1];
+    	for (i = tamanho - 1; i >= 0; i--)
+    	    b[--bucket[(vetor[i] / exp) % 10]] = vetor[i];
+    	for (i = 0; i < tamanho; i++)
+    	    vetor[i] = b[i];
+    	exp *= 10;
+    }
 
-void radixsort(int array[], int size){
-    int max = getMax(array, size);
-
-    for (int place = 1; max / place > 0; place *= 10)
-        countingSort(array, size, place);
+    free(b);
 }
