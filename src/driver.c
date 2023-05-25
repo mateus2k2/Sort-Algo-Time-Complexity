@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
     int size = 0;
 
-    for (int i = 100; i < 400; i = i * 2) {
+    for (int i = 100; i < 10000; i = i * 2) {
         printf("\n\n------------------------------------------------------------------------\n\n");
         printf("Tamanho Instancia %i\n", i);
         for (int j = 0; j < 20; j++) {
