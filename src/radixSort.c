@@ -2,7 +2,6 @@
 
 #include "headers/radixSort.h"
 
-
 void radixsort(int vetor[], int tamanho) {
     int i;
     int *b;

@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "insertionsort.h": "c",
-        "mergesort.h": "c"
+        "mergesort.h": "c",
+        "time.h": "c"
     }
 }
