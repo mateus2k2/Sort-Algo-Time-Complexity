@@ -7,9 +7,6 @@
 #include <time.h>
 #include <string.h>
 
-// ./scripts/runTests.sh
-
-
 //Rodar e gerar o arquivo com todos os dados
 //Analise de complexidade de todos os metodos
 //Gerar testes estatisticos para cada metodos

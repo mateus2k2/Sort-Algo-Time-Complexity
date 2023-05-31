@@ -28,8 +28,21 @@ radixSort.o: ./src/radixSort.c
 run:
 	@./bin/runner.exe $(SIZE) >> ./output/output.csv
 
-# teste:
-# 	@./scripts/runTests.sh
+teste:
+	@bash ./scripts/runTests.sh
+
+avr:
+	@cd ./statistic && python average.py && cd ./.. 
+
+bar:
+	@cd ./statistic && python barGraphs.py && cd ./..
+
+gra:
+	@cd ./statistic && python graphs.py && cd ./..
+
+t:
+	@cd ./statistic && python tTeste.py && cd ./..
+
 # ------------------------------------------------------------------------------
 
 go:

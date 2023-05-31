@@ -1,6 +1,7 @@
 import math
 import scipy.stats as stats
 import csv
+import numpy as np
 
 file = open("../output/averege.csv", "r")
 reader = csv.reader(file)
@@ -31,10 +32,21 @@ for row in reader:
     MergeRadix_lower, MergeRadix_upper =  calculate_confidence_interval(merge, radix)
 
     print("Tamanho" + row[0])
-    print("insertion X Merge = " + str(insertionMerge_lower) + "|" +  str(insertionMerge_upper))
-    print("insertion X Radix = " + str(insertionRadix_lower) + "|" +str(insertionRadix_upper))
+    print("insertion X Merge = " + str(insertionMerge_lower) + "|" + str(insertionMerge_upper))
+    print("insertion X Radix = " + str(insertionRadix_lower) + "|" + str(insertionRadix_upper))
     print("Merge X Radix     = " + str(MergeRadix_lower) +     "|" + str(MergeRadix_upper))
     print()
 
 
+# https://www.geeksforgeeks.org/how-to-calculate-confidence-intervals-in-python/
 
+gfg_data = [1, 1, 1, 2, 2, 2, 3, 3, 3,
+            3, 3, 4, 4, 5, 5, 5, 6,
+            7, 8, 10]
+  
+var = stats.t.interval(alpha=0.99,
+              df=len(gfg_data)-1,
+              loc=np.mean(gfg_data), 
+              scale=st.sem(gfg_data))
+
+print(var)
