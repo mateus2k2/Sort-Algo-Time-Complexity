@@ -52,29 +52,38 @@ with open(csv_file, "r") as file:
     next(reader)
     #itera sobre as linhas do arquivo
     for row in reader:
-        #verifica se a linha é vazia
         if row:
-            #itera sobre as 20 proximas linhas
-            for i in range(20):
-                #adiciona os tempos de execução de cada algoritmo
-                insertion_sort_times.append(float(row[2]))
-                merge_sort_times.append(float(row[3]))
-                radix_sort_times.append(float(row[4]))
+            insertion_sort_times.append(float(row[2]))
+            merge_sort_times.append(float(row[3]))
+            radix_sort_times.append(float(row[4]))
+        
+        else:      
+            print(insertion_sort_times)
+            print(merge_sort_times)
+            print(radix_sort_times)
+            
             #calcula o intervalo de confiança para cada algoritmo
             insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
             radix_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
+            
             #verifica se o intervalo de confiança de cada algoritmo contém o valor 0
-            if insertion_sort_interval[0] <= 0 and insertion_sort_interval[1] >= 0:
-                print("insertion sort: ", insertion_sort_interval)
-            if merge_sort_interval[0] <= 0 and merge_sort_interval[1] >= 0:
-                print("merge sort: ", merge_sort_interval)
-            if radix_sort_interval[0] <= 0 and radix_sort_interval[1] >= 0:
-                print("radix sort: ", radix_sort_interval)
+            # if insertion_sort_interval[0] <= 0 and insertion_sort_interval[1] >= 0:
+            #     print("insertion sort: ", insertion_sort_interval)
+            # if merge_sort_interval[0] <= 0 and merge_sort_interval[1] >= 0:
+            #     print("merge sort: ", merge_sort_interval)
+            # if radix_sort_interval[0] <= 0 and radix_sort_interval[1] >= 0:
+            #     print("radix sort: ", radix_sort_interval)
+            print("insertion sort:  ", insertion_sort_interval)
+            print("merge sort:      ", merge_sort_interval)
+            print("radix sort:      ", radix_sort_interval)
+            print()
+            
             #limpa as listas para a proxima iteração
             insertion_sort_times.clear()
             merge_sort_times.clear()
             radix_sort_times.clear()
+            
             #incrementa o tamanho da amostra
             current_sample_size *= 2
 
