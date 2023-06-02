@@ -21,6 +21,7 @@ void printArray(int array[], int size){
 
 void printValues(int size, int instanceIndex, double insertionTime, double mergeTime, double radixTime, int arrayReal[], int arrayInsertion[], int arrayMerge[] ,int arrayRadix[]) {
     printf("%d, %d, %.20f, %.20f, %.20f\n", size, instanceIndex, insertionTime, mergeTime, radixTime);
+    // printf("%d, %d, %.20f, %.20f, %.20f", size, instanceIndex, insertionTime, mergeTime, radixTime);
     // printf(", "); 
     // printArray(arrayReal, size);
     // printf(", "); 

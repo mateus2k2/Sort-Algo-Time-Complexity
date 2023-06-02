@@ -4,6 +4,6 @@
 #     make go SIZE="$i"
 # done
 
-for i in 100 200 400 800; do
+for i in 100 200; do
     make go SIZE="$i"
 done

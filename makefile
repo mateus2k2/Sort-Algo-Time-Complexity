@@ -28,7 +28,7 @@ radixSort.o: ./src/radixSort.c
 run:
 	@./bin/runner.exe $(SIZE) >> ./output/output.csv
 
-teste:
+testes:
 	@bash ./scripts/runTests.sh
 
 avr:

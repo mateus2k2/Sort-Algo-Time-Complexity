@@ -7,46 +7,31 @@ file = open("../output/averege.csv", "r")
 reader = csv.reader(file)
 next(reader)
 
-def calculate_confidence_interval(a, b, confidence_level=0.95):
-    mean = (a + b) / 2
-    std_dev = math.sqrt(((a - mean) ** 2 + (b - mean) ** 2) / 2)
-
-    dof = 1  # Degrees of freedom (assuming a normal distribution with two numbers)
-    alpha = 1 - confidence_level
-    t_critical = stats.t.ppf(1 - alpha / 2, dof)
-
-    margin_of_error = t_critical * std_dev / math.sqrt(2)
-
-    lower_bound = mean - margin_of_error
-    upper_bound = mean + margin_of_error
-
-    return lower_bound, upper_bound
-
-for row in reader:
-    insertion = float(row[2])
-    merge = float(row[3])
-    radix = float(row[4])
+def calculaIntervaloConfianca(a, b, confianca=0.95):
+    diferencaMedias = a - b
     
-    insertionMerge_lower, insertionMerge_upper =  calculate_confidence_interval(insertion, merge)
-    insertionRadix_lower, insertionRadix_upper =  calculate_confidence_interval(insertion, radix)
-    MergeRadix_lower, MergeRadix_upper =  calculate_confidence_interval(merge, radix)
+    var = stats.t.interval( confidence=confianca,
+                            df=len(diferencaMedias)-1,
+                            loc=np.mean(diferencaMedias), 
+                            scale=stats.sem(diferencaMedias))
 
-    print("Tamanho" + row[0])
-    print("insertion X Merge = " + str(insertionMerge_lower) + "|" + str(insertionMerge_upper))
-    print("insertion X Radix = " + str(insertionRadix_lower) + "|" + str(insertionRadix_upper))
-    print("Merge X Radix     = " + str(MergeRadix_lower) +     "|" + str(MergeRadix_upper))
-    print()
+    return var
 
+def calculaTudo():
+    for row in reader:
+        insertion = float(row[2])
+        merge = float(row[3])
+        radix = float(row[4])
+        
+        insertionMerge_lower, insertionMerge_upper =  calculaIntervaloConfianca(insertion, merge)
+        insertionRadix_lower, insertionRadix_upper =  calculaIntervaloConfianca(insertion, radix)
+        MergeRadix_lower, MergeRadix_upper =  calculaIntervaloConfianca(merge, radix)
 
-# https://www.geeksforgeeks.org/how-to-calculate-confidence-intervals-in-python/
+        print("Tamanho" + row[0])
+        print("insertion X Merge = " + str(insertionMerge_lower) + "|" + str(insertionMerge_upper))
+        print("insertion X Radix = " + str(insertionRadix_lower) + "|" + str(insertionRadix_upper))
+        print("Merge X Radix     = " + str(MergeRadix_lower) +     "|" + str(MergeRadix_upper))
+        print()
 
-gfg_data = [1, 1, 1, 2, 2, 2, 3, 3, 3,
-            3, 3, 4, 4, 5, 5, 5, 6,
-            7, 8, 10]
-  
-var = stats.t.interval(alpha=0.99,
-              df=len(gfg_data)-1,
-              loc=np.mean(gfg_data), 
-              scale=st.sem(gfg_data))
-
-print(var)
+# Era pra dar = (-6.92, 6.26)
+print(calculaIntervaloConfianca(-0.33, 0))
