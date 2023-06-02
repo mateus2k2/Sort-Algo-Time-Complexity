@@ -3,35 +3,79 @@ import scipy.stats as stats
 import csv
 import numpy as np
 
-file = open("../output/averege.csv", "r")
-reader = csv.reader(file)
-next(reader)
+def desvioSobreN(a):
+    return (np.std(a)**2) / len(a)
 
-def calculaIntervaloConfianca(a, b, confianca=0.95):
-    diferencaMedias = a - b
+def desvioPadraoDasDiferencas(a, b):
+    desvioA = np.std(a)
+    desvioB = np.std(b)
+    desvioDasDiferencas = np.sqrt(desvioSobreN(a) + desvioSobreN(b))
+    return desvioDasDiferencas
+
+def grauDeLiberdade(a, b):
+    desvioA = np.std(a)
+    desvioB = np.std(b)
+    aux1 = (desvioSobreN(a) + desvioSobreN(b))**2
+    aux2 = (desvioSobreN(a)**2) * (1 / (len(a) + 1))
+    aux3 = (desvioSobreN(b)**2) * (1 / (len(b) + 1))
+    grauDeLiberdade = (aux1 / (aux2 + aux3)) - 2
     
-    var = stats.t.interval( confidence=confianca,
-                            df=len(diferencaMedias)-1,
-                            loc=np.mean(diferencaMedias), 
-                            scale=stats.sem(diferencaMedias))
+    return grauDeLiberdade
 
-    return var
+def valorT(confianca, grausDeLiberdade):
+    significancia = 1 - confianca
+    t = stats.t.ppf(1 - (significancia / 2), grausDeLiberdade)
+    return t
 
-def calculaTudo():
+def intervaloDeConfianca(a, b):
+    desvioDasDiferencas = desvioPadraoDasDiferencas(a, b)
+    grausDeLiberdade = grauDeLiberdade(a, b)
+    t = valorT(0.95, round(grausDeLiberdade))
+    mediaDasDiferencas = np.mean(a) - np.mean(b)
+    intervalo = [mediaDasDiferencas - (t * desvioDasDiferencas), mediaDasDiferencas + (t * desvioDasDiferencas)]
+    return intervalo
+
+
+csv_file = "../output/output.csv"
+
+
+insertion_sort_times = []
+merge_sort_times = []
+radix_sort_times = []
+
+
+current_sample_size = 100
+
+
+with open(csv_file, "r") as file:
+    reader = csv.reader(file)
+    next(reader)
+    #itera sobre as linhas do arquivo
     for row in reader:
-        insertion = float(row[2])
-        merge = float(row[3])
-        radix = float(row[4])
-        
-        insertionMerge_lower, insertionMerge_upper =  calculaIntervaloConfianca(insertion, merge)
-        insertionRadix_lower, insertionRadix_upper =  calculaIntervaloConfianca(insertion, radix)
-        MergeRadix_lower, MergeRadix_upper =  calculaIntervaloConfianca(merge, radix)
+        #verifica se a linha é vazia
+        if row:
+            #itera sobre as 20 proximas linhas
+            for i in range(20):
+                #adiciona os tempos de execução de cada algoritmo
+                insertion_sort_times.append(float(row[2]))
+                merge_sort_times.append(float(row[3]))
+                radix_sort_times.append(float(row[4]))
+            #calcula o intervalo de confiança para cada algoritmo
+            insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
+            merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
+            radix_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
+            #verifica se o intervalo de confiança de cada algoritmo contém o valor 0
+            if insertion_sort_interval[0] <= 0 and insertion_sort_interval[1] >= 0:
+                print("insertion sort: ", insertion_sort_interval)
+            if merge_sort_interval[0] <= 0 and merge_sort_interval[1] >= 0:
+                print("merge sort: ", merge_sort_interval)
+            if radix_sort_interval[0] <= 0 and radix_sort_interval[1] >= 0:
+                print("radix sort: ", radix_sort_interval)
+            #limpa as listas para a proxima iteração
+            insertion_sort_times.clear()
+            merge_sort_times.clear()
+            radix_sort_times.clear()
+            #incrementa o tamanho da amostra
+            current_sample_size *= 2
 
-        print("Tamanho" + row[0])
-        print("insertion X Merge = " + str(insertionMerge_lower) + "|" + str(insertionMerge_upper))
-        print("insertion X Radix = " + str(insertionRadix_lower) + "|" + str(insertionRadix_upper))
-        print("Merge X Radix     = " + str(MergeRadix_lower) +     "|" + str(MergeRadix_upper))
-        print()
 
-# Era pra dar = (-6.92, 6.26)
-print(calculaIntervaloConfianca(-0.33, 0))

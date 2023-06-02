@@ -41,7 +41,7 @@ gra:
 	@cd ./statistic && python graphs.py && cd ./..
 
 t:
-	@cd ./statistic && python tTeste.py && cd ./..
+	@cd ./statistic && python3 tTeste.py && cd ./..
 
 # ------------------------------------------------------------------------------
 
