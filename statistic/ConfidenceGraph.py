@@ -19,7 +19,7 @@ file = open("../output/grafico.csv", "r")
 reader = csv.reader(file)
 next(reader)
 
-tamanho = 6400
+tamanho = 1600
 
 plt.xticks([1, 2, 3], ["insertionRadix", "mergeRadix", "radixInsertion"])
 plt.title('Confidence Interval = Tamanho = ' + str(tamanho))
