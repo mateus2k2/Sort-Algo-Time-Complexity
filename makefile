@@ -44,7 +44,7 @@ conf:
 	@cd ./statistic && python ConfidenceGraph.py && cd ./..
 
 t:
-	@cd ./statistic && python3 tTeste.py && cd ./..
+	@cd ./statistic && python tTeste.py >> ../output/grafico.csv && cd ./..
 
 # ------------------------------------------------------------------------------
 

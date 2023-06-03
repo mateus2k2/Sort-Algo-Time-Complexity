@@ -39,7 +39,7 @@ def retornaMedia(a, b):
     mediaA = np.mean(a)
     mediaB = np.mean(b)
     mediaDasDiferencas = mediaA - mediaB
-    return [mediaA, mediaB, mediaDasDiferencas]
+    return mediaDasDiferencas
     
 
 csv_file = "../output/output.csv"
@@ -64,31 +64,14 @@ with open(csv_file, "r") as file:
             radix_sort_times.append(float(row[4]))
         
         else:      
-            print("current_sample_size: ", current_sample_size)
-            # print(insertion_sort_times)
-            # print(merge_sort_times)
-            # print(radix_sort_times)
-            
             #calcula o intervalo de confiança para cada algoritmo
             insertionRadix_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             mergeRadix_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
             radixInsertion_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
             
-            #verifica se o intervalo de confiança de cada algoritmo contém o valor 0
-            # if insertionRadix_sort_interval[0] <= 0 and insertionRadix_sort_interval[1] >= 0:
-            #     print("insertion sort: ", insertionRadix_sort_interval)
-            # if mergeRadix_sort_interval[0] <= 0 and mergeRadix_sort_interval[1] >= 0:
-            #     print("merge sort: ", mergeRadix_sort_interval)
-            # if radixInsertion_sort_interval[0] <= 0 and radixInsertion_sort_interval[1] >= 0:
-            #     print("radix sort: ", radixInsertion_sort_interval)
-            print("insertionRadixSortConf =  ", insertionRadix_sort_interval)
-            print("mergeRadixSortConf =      ", mergeRadix_sort_interval)
-            print("radixInsertionSortConf =  ", radixInsertion_sort_interval)
-            
-            print("insertionRadixSortMean =  ", retornaMedia(insertion_sort_times, merge_sort_times))
-            print("mergeRadixSortMean =      ", retornaMedia(merge_sort_times, radix_sort_times))
-            print("radixInsertionSortMean =  ", retornaMedia(radix_sort_times, insertion_sort_times))
-            
+            print("insertionRadix" + str(current_sample_size) + ',' + str(retornaMedia(insertion_sort_times, radix_sort_times)) + ',' + str(min(insertionRadix_sort_interval)) + ',' + str(max(insertionRadix_sort_interval)) )
+            print("mergeRadix" + str(current_sample_size) + ',' + str(retornaMedia(merge_sort_times, radix_sort_times)) + ',' + str(min(mergeRadix_sort_interval)) + ',' + str(max(mergeRadix_sort_interval)) )
+            print("radixInsertion" + str(current_sample_size) + ',' + str(retornaMedia(radix_sort_times, insertion_sort_times)) + ',' + str(min(radixInsertion_sort_interval)) + ',' + str(max(radixInsertion_sort_interval)) )
             print()
             
             #limpa as listas para a proxima iteração
