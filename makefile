@@ -40,6 +40,9 @@ bar:
 gra:
 	@cd ./statistic && python graphs.py && cd ./..
 
+conf:
+	@cd ./statistic && python ConfidenceGraph.py && cd ./..
+
 t:
 	@cd ./statistic && python3 tTeste.py && cd ./..
 
