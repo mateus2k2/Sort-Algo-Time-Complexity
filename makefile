@@ -30,19 +30,20 @@ run:
 
 testes:
 	@bash ./scripts/runTests.sh
+	@make -s t
 
 avr:
-	@cd ./statistic && python average.py && cd ./.. 
+	@cd ./statistic && python3 average.py && cd ./.. 
 
 bar:
-	@cd ./statistic && python barGraphs.py && cd ./..
+	@cd ./statistic && python3 barGraphs.py && cd ./..
 
 gra:
-	@cd ./statistic && python graphs.py && cd ./..
+	@cd ./statistic && python3 graphs.py && cd ./..
 
-t:
-	@cd ./statistic && python3 tTeste.py && cd ./..
-
+t:	
+	@cd ./output && rm ./*.out && cd ./..
+	@cd ./statistic && python3 tTeste.py >> ../output/resultados.out && cd ./..
 # ------------------------------------------------------------------------------
 
 go:

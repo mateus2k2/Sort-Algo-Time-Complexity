@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
         tempoGastoMerge = ((double)(end - start)) / CLOCKS_PER_SEC;
 
         start = clock();
-        radixsort(instanciaRadixSort, size);
+        radixSort(instanciaRadixSort, size);
         end = clock();
         tempoGastoRadix = ((double)(end - start)) / CLOCKS_PER_SEC;
 

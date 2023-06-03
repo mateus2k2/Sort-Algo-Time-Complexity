@@ -43,8 +43,13 @@ insertion_sort_times = []
 merge_sort_times = []
 radix_sort_times = []
 
-
 current_sample_size = 100
+
+def analise(a, b, algoritmo1, algoritmo2):
+    if((np.mean(a) - np.mean(b)) < 0):
+        print("O algoritmo ", algoritmo1, " é melhor que o algoritmo ", algoritmo2, " para a amostra de tamanho: ", current_sample_size)
+    else:
+        print("O algoritmo ", algoritmo2, " é melhor que o algoritmo ", algoritmo1, " para a amostra de tamanho: ", current_sample_size)
 
 
 with open(csv_file, "r") as file:
@@ -58,32 +63,33 @@ with open(csv_file, "r") as file:
             radix_sort_times.append(float(row[4]))
         
         else:      
-            print(insertion_sort_times)
-            print(merge_sort_times)
-            print(radix_sort_times)
-            
             #calcula o intervalo de confiança para cada algoritmo
             insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
             radix_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
-            
+    
             #verifica se o intervalo de confiança de cada algoritmo contém o valor 0
-            # if insertion_sort_interval[0] <= 0 and insertion_sort_interval[1] >= 0:
-            #     print("insertion sort: ", insertion_sort_interval)
-            # if merge_sort_interval[0] <= 0 and merge_sort_interval[1] >= 0:
-            #     print("merge sort: ", merge_sort_interval)
-            # if radix_sort_interval[0] <= 0 and radix_sort_interval[1] >= 0:
-            #     print("radix sort: ", radix_sort_interval)
-            print("insertion sort:  ", insertion_sort_interval)
-            print("merge sort:      ", merge_sort_interval)
-            print("radix sort:      ", radix_sort_interval)
+            if insertion_sort_interval[0] <= 0 and insertion_sort_interval[1] >= 0:
+                print("Algoritmos com tempos iguais para a amostra de tamanho: ", current_sample_size)
+            else:
+                analise(insertion_sort_times, merge_sort_times, "insertion sort", "merge sort")
+
+            if merge_sort_interval[0] <= 0 and merge_sort_interval[1] >= 0:
+                print("Algoritmos com tempos iguais para a amostra de tamanho: ", current_sample_size)
+            else:
+                analise(merge_sort_times, radix_sort_times, "merge sort", "radix sort")
+                
+            if radix_sort_interval[0] <= 0 and radix_sort_interval[1] >= 0:
+                print("Algoritmos com tempos iguais para a amostra de tamanho: ", current_sample_size)
+            else:
+                analise(radix_sort_times, insertion_sort_times, "radix sort", "insertion sort")
             print()
             
             #limpa as listas para a proxima iteração
             insertion_sort_times.clear()
             merge_sort_times.clear()
             radix_sort_times.clear()
-            
+                
             #incrementa o tamanho da amostra
             current_sample_size *= 2
 
