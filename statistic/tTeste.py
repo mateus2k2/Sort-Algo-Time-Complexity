@@ -35,6 +35,12 @@ def intervaloDeConfianca(a, b):
     intervalo = [mediaDasDiferencas - (t * desvioDasDiferencas), mediaDasDiferencas + (t * desvioDasDiferencas)]
     return intervalo
 
+def retornaMedia(a, b):
+    mediaA = np.mean(a)
+    mediaB = np.mean(b)
+    mediaDasDiferencas = mediaA - mediaB
+    return [mediaA, mediaB, mediaDasDiferencas]
+    
 
 csv_file = "../output/output.csv"
 
@@ -58,25 +64,31 @@ with open(csv_file, "r") as file:
             radix_sort_times.append(float(row[4]))
         
         else:      
-            print(insertion_sort_times)
-            print(merge_sort_times)
-            print(radix_sort_times)
+            print("current_sample_size: ", current_sample_size)
+            # print(insertion_sort_times)
+            # print(merge_sort_times)
+            # print(radix_sort_times)
             
             #calcula o intervalo de confiança para cada algoritmo
-            insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
-            merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
-            radix_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
+            insertionRadix_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
+            mergeRadix_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
+            radixInsertion_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
             
             #verifica se o intervalo de confiança de cada algoritmo contém o valor 0
-            # if insertion_sort_interval[0] <= 0 and insertion_sort_interval[1] >= 0:
-            #     print("insertion sort: ", insertion_sort_interval)
-            # if merge_sort_interval[0] <= 0 and merge_sort_interval[1] >= 0:
-            #     print("merge sort: ", merge_sort_interval)
-            # if radix_sort_interval[0] <= 0 and radix_sort_interval[1] >= 0:
-            #     print("radix sort: ", radix_sort_interval)
-            print("insertion sort:  ", insertion_sort_interval)
-            print("merge sort:      ", merge_sort_interval)
-            print("radix sort:      ", radix_sort_interval)
+            # if insertionRadix_sort_interval[0] <= 0 and insertionRadix_sort_interval[1] >= 0:
+            #     print("insertion sort: ", insertionRadix_sort_interval)
+            # if mergeRadix_sort_interval[0] <= 0 and mergeRadix_sort_interval[1] >= 0:
+            #     print("merge sort: ", mergeRadix_sort_interval)
+            # if radixInsertion_sort_interval[0] <= 0 and radixInsertion_sort_interval[1] >= 0:
+            #     print("radix sort: ", radixInsertion_sort_interval)
+            print("insertionRadixSortConf =  ", insertionRadix_sort_interval)
+            print("mergeRadixSortConf =      ", mergeRadix_sort_interval)
+            print("radixInsertionSortConf =  ", radixInsertion_sort_interval)
+            
+            print("insertionRadixSortMean =  ", retornaMedia(insertion_sort_times, merge_sort_times))
+            print("mergeRadixSortMean =      ", retornaMedia(merge_sort_times, radix_sort_times))
+            print("radixInsertionSortMean =  ", retornaMedia(radix_sort_times, insertion_sort_times))
+            
             print()
             
             #limpa as listas para a proxima iteração
