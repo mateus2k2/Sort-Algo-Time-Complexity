@@ -39,7 +39,17 @@ bar:
 	@cd ./statistic && python3 barGraphs.py && cd ./..
 
 gra:
+<<<<<<< HEAD
 	@cd ./statistic && python3 graphs.py && cd ./..
+=======
+	@cd ./statistic && python graphs.py && cd ./..
+
+conf:
+	@cd ./statistic && python ConfidenceGraph.py && cd ./..
+
+t:
+	@cd ./statistic && python3 tTeste.py && cd ./..
+>>>>>>> f11d368c876beac2aa908020587f4a8354c230b3
 
 t:	
 	@cd ./output && rm ./*.out && cd ./..
