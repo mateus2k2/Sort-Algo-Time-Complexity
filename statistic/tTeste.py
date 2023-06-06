@@ -68,15 +68,16 @@ with open(csv_file, "r") as file:
             merge_sort_times.append(float(row[3]))
             radix_sort_times.append(float(row[4]))
         
-        else:      
+        else:  
+            print(1)
             #calcula o intervalo de confiança para cada algoritmo
-            insertionRadix_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
+            insertionRadix_sort_interval = intervaloDeConfianca(insertion_sort_times, radix_sort_times)
             mergeRadix_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
-            radixInsertion_sort_interval = intervaloDeConfianca(radix_sort_times, insertion_sort_times)
+            insertionMerge_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             
+            print("insertionMerge" + str(current_sample_size) + ',' + str(retornaMedia(insertion_sort_times, merge_sort_times)) + ',' + str(min(insertionMerge_sort_interval)) + ',' + str(max(insertionMerge_sort_interval)) )
             print("insertionRadix" + str(current_sample_size) + ',' + str(retornaMedia(insertion_sort_times, radix_sort_times)) + ',' + str(min(insertionRadix_sort_interval)) + ',' + str(max(insertionRadix_sort_interval)) )
             print("mergeRadix" + str(current_sample_size) + ',' + str(retornaMedia(merge_sort_times, radix_sort_times)) + ',' + str(min(mergeRadix_sort_interval)) + ',' + str(max(mergeRadix_sort_interval)) )
-            print("radixInsertion" + str(current_sample_size) + ',' + str(retornaMedia(radix_sort_times, insertion_sort_times)) + ',' + str(min(radixInsertion_sort_interval)) + ',' + str(max(radixInsertion_sort_interval)) )
             
             # insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             # merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)

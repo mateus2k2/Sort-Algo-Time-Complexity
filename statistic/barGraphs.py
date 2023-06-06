@@ -1,26 +1,25 @@
-import pandas as pd
+import csv
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('../output/averege.csv')
+csv_file = '../output/averege.csv'
+output_dir = '../graphs/'
 
-plt.figure(figsize=(10, 6))
+with open(csv_file, 'r') as file:
+    reader = csv.reader(file)
+    headers = next(reader)  # Skip the header row
 
-sizes = df['Size'].unique()
+    for row in reader:
+        size = int(row[0])
+        insertion_time = float(row[2])
+        merge_time = float(row[3])
+        radix_time = float(row[4])
 
-positions = range(len(sizes))
-
-bar_width = 0.2
-
-plt.bar(positions, df[' Insertion Time'], width=bar_width, label='Insertion')
-plt.bar([p + bar_width for p in positions], df[' Merge Time'], width=bar_width, label='Merge')
-plt.bar([p + 2 * bar_width for p in positions], df[' Radix Time'], width=bar_width, label='Radix')
-
-plt.xticks([p + bar_width for p in positions], sizes)
-
-plt.ylabel('Time')
-
-plt.title('Algorithm Execution Time by Size')
-
-plt.legend()
-
-plt.show()
+        # Plot the bar graph
+        plt.figure()
+        plt.bar(['Insertion', 'Merge', 'Radix'], [insertion_time, merge_time, radix_time])
+        plt.xlabel('Algorithm')
+        plt.ylabel('Time')
+        plt.title(f'Size: {size}')
+        plt.show()
+        # plt.savefig(f'{output_dir}size_{size}.png')
+        plt.close()

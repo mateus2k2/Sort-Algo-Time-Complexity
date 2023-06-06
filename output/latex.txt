@@ -1,0 +1,104 @@
+\begin{table}[!h]
+%\caption{}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{1}{|l|}{Métodos X Tamanho}                                         & \multicolumn{1}{l|}{100}                                                                                     & \multicolumn{1}{l|}{200}                                                                                 & \multicolumn{1}{l|}{400}                                                                              & \multicolumn{1}{l|}{800}                                            & \multicolumn{1}{l|}{1600}                                   \\ \hline
+\begin{tabular}[c]{@{}c@{}}Insertion Sort \\ \& \\ Merge Sort\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(\(-4.1587 \cdot 10^{-6}\); \\ \(1.2587  \cdot 10^{-6}\))\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(\(2.5106  \cdot 10^{-6}\); \\ \(3.6893  \cdot 10^{-6}\))\end{tabular}        & \begin{tabular}[c]{@{}c@{}}(\(7.3050 \cdot 10^{-5}\); \\ \(8.6749  \cdot 10^{-5}\))\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(0.0003;\\ 0.0003)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.0013; \\ 0.0016)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Insertion Sort \\ \& \\ Radix Sort\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(\(1.2377  \cdot 10^{-5}\); \\ \(1.6722  \cdot 10^{-5}\))\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(\(1.9417  \cdot 10^{-5}\); \\ \(2.0282  \cdot 10^{-5}\))\end{tabular}        & \begin{tabular}[c]{@{}c@{}}  (0.0001;               \\  0.0001)\end{tabular}                          & \begin{tabular}[c]{@{}c@{}}(0.0004;\\ 0.0005)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.0015; \\ 0.0018)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Merge Sort     \\ \& \\ Radix Sort\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(\(1.4071  \cdot 10^{-5}\); \\ \(1.7928  \cdot 10^{-5}\))\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(\(1.6227  \cdot 10^{-5}\); \\ \(1.7272  \cdot 10^{-5}\))\end{tabular}        & \begin{tabular}[c]{@{}c@{}}(\(6.2585 \cdot 10^{-5}\); \\ \(7.0614  \cdot 10^{-5}\))\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(0.0001;\\ 0.0001)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.0001; \\ 0.0002)\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+insertionMerge100,  -4.1587260148862305e-06  1.2587260148862273e-06
+insertionRadix100,  1.237704773934114e-05    1.6722952260658856e-05
+mergeRadix100,      1.4071883473505715e-05   1.7928116526494283e-05
+
+insertionMerge200,  2.5106613414854666e-06  3.6893386585145283e-06
+insertionRadix200,  1.9417103297299507e-05  2.0282896702700496e-05
+mergeRadix200,      1.6227064735940308e-05  1.72729352640597e-05
+
+insertionMerge400,  7.305022812483318e-05   8.674977187516683e-05
+insertionRadix400,  0.0001405939231680888   0.00015240607683191123
+mergeRadix400,      6.258521404296036e-05   7.061478595703968e-05
+
+insertionMerge800  0.000346942493334981     0.0003900575066650187
+insertionRadix800  0.00047041108515313585   0.0005121889148468639
+mergeRadix800      0.00011636285064005784   0.00012923714935994215
+
+insertionMerge1600  0.0013371363970645462   0.0016451636029354536
+insertionRadix1600  0.0015569423373417892   0.0018632576626582107
+mergeRadix1600      0.00019758674987441604  0.0002403132501255841
+
+
+
+\begin{table}[!h]
+%\caption{}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{1}{|l|}{Métodos X Tamanho}                                         & \multicolumn{1}{l|}{3200}                                             & \multicolumn{1}{l|}{6400}                                         & \multicolumn{1}{l|}{12800}                                            & \multicolumn{1}{l|}{25600}                                          & \multicolumn{1}{l|}{51200}                                  \\ \hline
+\begin{tabular}[c]{@{}c@{}}Insertion Sort \\ \& \\ Merge Sort\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(0.0037;\\ 0.0054)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.0124;\\ 0.0167)\end{tabular}        & \begin{tabular}[c]{@{}c@{}}(0.0513;\\ 0.0567)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.2110;\\ 0.2182)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.8599; \\ 0.8623)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Insertion Sort \\ \& \\ Radix Sort\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(0.0040;\\ 0.0057)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.0129;\\ 0.0173)\end{tabular}        & \begin{tabular}[c]{@{}c@{}}(0.0524;\\ 0.0578)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.2133;\\ 0.2205)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.8651; \\ 0.8675)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Merge Sort     \\ \& \\ Radix Sort\end{tabular}      & \begin{tabular}[c]{@{}c@{}}(0.0002;\\ 0.0004)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.0005;\\ 0.0006)\end{tabular}        & \begin{tabular}[c]{@{}c@{}}(0.0010;\\ 0.0011)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.0023;\\ 0.0023)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.0051; \\ 0.0052)\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+insertionMerge3200       0.003725023180175007       0.0054551768198249926
+insertionRadix3200       0.0040723486605041504      0.005797751339495849
+mergeRadix3200           0.00027884635235572974     0.0004110536476442705
+
+insertionMerge6400        0.012413622504782897       0.0167548774952171
+insertionRadix6400        0.012987228842393679       0.017326671157606315
+mergeRadix6400            0.0005078432570315842      0.0006375567429684158
+
+insertionMerge12800      0.05135616412385451     0.056789735876145477
+insertionRadix12800      0.05244665681315916     0.05788014318684083
+mergeRadix12800          0.00107431313848694     0.0011065868615130604
+
+insertionMerge25600       0.2110212884068507      0.21821871159314926
+insertionRadix25600       0.2133892087238216      0.22058659127617836
+mergeRadix25600           0.0023536611367451364   0.0023821388632548636
+
+insertionMerge51200         0.8599621894388157      0.8623421105611843
+insertionRadix51200         0.8651855740902101      0.8675609259097901
+mergeRadix51200             0.005143055868841365    0.005299144131158634
+
+
+
+
+\begin{table}[!h]
+%\caption{}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{1}{|l|}{Métodos X Tamanho}                                    & \multicolumn{1}{l|}{102400}                                           & \multicolumn{1}{l|}{204800}                                        & \multicolumn{1}{l|}{409600}                                             & \multicolumn{1}{l|}{819200}                                             & \multicolumn{1}{l|}{1638400}                                    \\ \hline
+\begin{tabular}[c]{@{}c@{}}Insertion Sort \\ \& \\ Merge Sort\end{tabular} & \begin{tabular}[c]{@{}c@{}}(3.5162;\\ 3.5297)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(14.2345;\\ 14.2699)\end{tabular}       & \begin{tabular}[c]{@{}c@{}}(57.1586;\\ 57.2895)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(229.1622;\\ 229.4175)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(921.1415; \\ 921.7669)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Insertion Sort \\ \& \\ Radix Sort\end{tabular} & \begin{tabular}[c]{@{}c@{}}(3.5268;\\ 3.5403)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(14.2575;\\ 14.2929)\end{tabular}       & \begin{tabular}[c]{@{}c@{}}(57.2077;\\ 57.3387)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(229.2663;\\ 229.5215)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(921.3528; \\ 921.9782)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Merge Sort     \\ \& \\ Radix Sort\end{tabular} & \begin{tabular}[c]{@{}c@{}}(0.0105;\\ 0.0106)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.0228; \\ 0.0231)\end{tabular}        & \begin{tabular}[c]{@{}c@{}}(0.04900;\\ 0.04927)\end{tabular}            & \begin{tabular}[c]{@{}c@{}}(0.103977;\\ 0.104200)\end{tabular}          & \begin{tabular}[c]{@{}c@{}}(0.210524; \\ 0.212074)\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+
+insertionMerge102400       3.5162816167495587       3.529767983250442
+insertionRadix102400       3.526889131280527        3.5403744687194734
+mergeRadix102400           0.010518401949513477     0.010695598050486524
+
+insertionMerge204800         14.234578055053952     14.269918844946044
+insertionRadix204800         14.257575556448241     14.292915843551757
+mergeRadix204800             0.022893773441238486   0.023100726558761508
+
+insertionMerge409600          57.158610336995366        57.28959106300465
+insertionRadix409600          57.2077516910203          57.338732208979714
+mergeRadix409600              0.04900672176191035       0.04927577823808963
+
+insertionMerge819200             229.16227002701297      229.41750617298706
+insertionRadix819200             229.26635945106472      229.5215955489353
+mergeRadix819200                 0.1039779181338116      0.1042008818661884
+
+insertionMerge1638400         921.1415518323553         921.7669776676452
+insertionRadix1638400         921.3528522236832         921.9782764763172
+mergeRadix1638400             0.21052432167949925       0.21207487832050081
+
+
+
+

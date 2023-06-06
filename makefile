@@ -32,24 +32,29 @@ testes:
 	@bash ./scripts/runTests.sh
 	@make -s t
 
-avr:
-	@cd ./statistic && python3 average.py && cd ./.. 
+# usado o output.csv para gera as medias para cada tamnho de instancia >> averege.csv
+media:
+	@cd ./statistic && python average.py && cd ./.. 
 
-bar:
-	@cd ./statistic && python3 barGraphs.py && cd ./..
+# usando o arquivo averege.csv para gerar os graficos em barra
+barra:
+	@cd ./statistic && python barGraphs.py && cd ./..
 
-gra:
-	@cd ./statistic && python graphs.py && cd ./..
+# usando o arquivo averege.csv para gerar os graficos em linha
+linha:
+	@cd ./statistic && python lineGraphs.py && cd ./..
 
-conf:
-	@cd ./statistic && python ConfidenceGraph.py && cd ./..
+# usando o arquivo IntervaloMedia.csv para gerar os graficos de confianca
+confianca:
+	@cd ./statistic && python confidenceGraph.py && cd ./..
 
-t:
-	@cd ./statistic && python tTeste.py >> ../output/grafico.csv && cd ./..
+# usado o output.csv para gera o intervalo de confianca e a diferenca das medias >> IntervaloMedia.csv
+testeT:
+	@cd ./statistic && python tTeste.py >> ../output/IntervaloMedia.csv && cd ./..
 
 # t:	
 # 	@cd ./output && rm ./*.out && cd ./..
-# 	@cd ./statistic && python3 tTeste.py >> ../output/resultados.out && cd ./..
+# 	@cd ./statistic && python tTeste.py >> ../output/resultados.out && cd ./..
 # ------------------------------------------------------------------------------
 
 go:
