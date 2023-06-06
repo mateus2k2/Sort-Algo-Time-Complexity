@@ -35,12 +35,21 @@ def intervaloDeConfianca(a, b):
     intervalo = [mediaDasDiferencas - (t * desvioDasDiferencas), mediaDasDiferencas + (t * desvioDasDiferencas)]
     return intervalo
 
-def retornaMedia(a, b):
-    mediaA = np.mean(a)
-    mediaB = np.mean(b)
-    mediaDasDiferencas = mediaA - mediaB
-    return mediaDasDiferencas
+def mediaComIC(data):
+    confidence_level = 0.95 
+    sample_mean = np.mean(data)
+    sample_std = np.std(data, ddof=1) 
+
+    critical_value = stats.norm.ppf(1 - (1 - confidence_level) / 2)
+
+    standard_error = sample_std / np.sqrt(len(data))
+
+    margin_of_error = critical_value * standard_error
+
+    confidence_interval = [sample_mean - margin_of_error, sample_mean + margin_of_error]
     
+    mediaComIC = [sample_mean, confidence_interval[0], confidence_interval[1]]
+    return mediaComIC
 
 csv_file = "../output/output.csv"
 
@@ -69,15 +78,13 @@ with open(csv_file, "r") as file:
             radix_sort_times.append(float(row[4]))
         
         else:  
-            print(1)
-            #calcula o intervalo de confiança para cada algoritmo
-            insertionRadix_sort_interval = intervaloDeConfianca(insertion_sort_times, radix_sort_times)
-            mergeRadix_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
-            insertionMerge_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
+            insertionSortMedia = mediaComIC(insertion_sort_times)
+            mergeSortMedia = mediaComIC(merge_sort_times)
+            radixSortMedia = mediaComIC(radix_sort_times)
             
-            print("insertionMerge" + str(current_sample_size) + ',' + str(retornaMedia(insertion_sort_times, merge_sort_times)) + ',' + str(min(insertionMerge_sort_interval)) + ',' + str(max(insertionMerge_sort_interval)) )
-            print("insertionRadix" + str(current_sample_size) + ',' + str(retornaMedia(insertion_sort_times, radix_sort_times)) + ',' + str(min(insertionRadix_sort_interval)) + ',' + str(max(insertionRadix_sort_interval)) )
-            print("mergeRadix" + str(current_sample_size) + ',' + str(retornaMedia(merge_sort_times, radix_sort_times)) + ',' + str(min(mergeRadix_sort_interval)) + ',' + str(max(mergeRadix_sort_interval)) )
+            print("insertion" + str(current_sample_size) + ',' + str(insertionSortMedia[0]) + ',' + str(insertionSortMedia[1]) + ',' + str(insertionSortMedia[2]) )
+            print("merge" + str(current_sample_size) + ',' + str(mergeSortMedia[0]) + ',' + str(mergeSortMedia[1]) + ',' + str(mergeSortMedia[2]) )
+            print("radix" + str(current_sample_size) + ',' + str(radixSortMedia[0]) + ',' + str(radixSortMedia[1]) + ',' + str(radixSortMedia[2]) )
             
             # insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             # merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)

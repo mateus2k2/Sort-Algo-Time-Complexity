@@ -10,8 +10,6 @@ sizes = [int(row['Size']) for row in data]
 merge_times = [float(row[' Merge Time']) for row in data]
 radix_times = [float(row[' Radix Time']) for row in data]
 
-# plt.xticks([100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 204800, 409600, 819200, 1638400], ["100", "200", "400", "800", "1600", "3200", "6400", "12800", "25600", "51200", "102400", "204800", "409600", "819200", "1638400"])
-
 plt.figure(figsize=(10, 6))
 # plt.plot(sizes, insertion_times, marker='o', label='Insertion Time')
 plt.plot(sizes, merge_times, marker='o', label='Merge Time')

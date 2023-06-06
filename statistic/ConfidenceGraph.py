@@ -21,16 +21,37 @@ next(reader)
 
 tamanho = 100
 
-plt.xticks([1, 2, 3], ["insertionRadix", "mergeRadix", "radixInsertion"])
-plt.title('Confidence Interval = Tamanho = ' + str(tamanho))
+# plt.xticks([0], ["insertion"])
+# plt.xticks([1, 2, 3], ["insertion", "merge", "radix"])
+# plt.title('Confidence Interval = Tamanho = ' + str(tamanho))
 
 for row in reader:
-    if row and str(tamanho) in row[0]:
-        plot_confidence_interval(1, float(row[1]), float(row[2]), float(row[3])) 
+    if row:
+        plt.xlim(-3, 3)
+        plt.title('Confidence Interval Insertion Sort Tamanho ' + str(tamanho))
+        plt.xticks([0], ["insertion"])
+        plot_confidence_interval(0, float(row[1]), float(row[2]), float(row[3])) 
+        plt.savefig("../graphs/conf/python/" + str(tamanho) + "Insertion" + ".png")
+        plt.clf()
         row = next(reader)
-        plot_confidence_interval(2, float(row[1]), float(row[2]), float(row[3]))
+        
+        plt.xlim(-3, 3)
+        plt.title('Confidence Interval Merge Sort Tamanho ' + str(tamanho))
+        plt.xticks([0], ["Merge"])
+        plot_confidence_interval(0, float(row[1]), float(row[2]), float(row[3])) 
+        plt.savefig("../graphs/conf/python/" + str(tamanho) + "Merge" + ".png")
+        plt.clf()
         row = next(reader)
-        plot_confidence_interval(3, float(row[1]), float(row[2]), float(row[3]))
-        break
+        
+        plt.xlim(-3, 3)
+        plt.title('Confidence Interval radix Sort Tamanho ' + str(tamanho))
+        plt.xticks([0], ["radix"])
+        plot_confidence_interval(0, float(row[1]), float(row[2]), float(row[3])) 
+        plt.savefig("../graphs/conf/python/" + str(tamanho) + "Radix" + ".png")
+        plt.clf()
+        row = next(reader)
+        
+        tamanho *= 2
+        # break
 
-plt.show()
+# plt.show()
