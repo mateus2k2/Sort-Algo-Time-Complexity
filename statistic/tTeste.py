@@ -35,6 +35,12 @@ def intervaloDeConfianca(a, b):
     intervalo = [mediaDasDiferencas - (t * desvioDasDiferencas), mediaDasDiferencas + (t * desvioDasDiferencas)]
     return intervalo
 
+def analise(a, b, algoritmo1, algoritmo2):
+    if((np.mean(a) - np.mean(b)) < 0):
+        print("O algoritmo ", algoritmo1, " é melhor que o algoritmo ", algoritmo2, " para a amostra de tamanho: ", current_sample_size)
+    else:
+        print("O algoritmo ", algoritmo2, " é melhor que o algoritmo ", algoritmo1, " para a amostra de tamanho: ", current_sample_size)
+
 def mediaComIC(data):
     confidence_level = 0.95 
     sample_mean = np.mean(data)
@@ -53,18 +59,11 @@ def mediaComIC(data):
 
 csv_file = "../output/output.csv"
 
-
 insertion_sort_times = []
 merge_sort_times = []
 radix_sort_times = []
 
 current_sample_size = 100
-
-def analise(a, b, algoritmo1, algoritmo2):
-    if((np.mean(a) - np.mean(b)) < 0):
-        print("O algoritmo ", algoritmo1, " é melhor que o algoritmo ", algoritmo2, " para a amostra de tamanho: ", current_sample_size)
-    else:
-        print("O algoritmo ", algoritmo2, " é melhor que o algoritmo ", algoritmo1, " para a amostra de tamanho: ", current_sample_size)
 
 
 with open(csv_file, "r") as file:
