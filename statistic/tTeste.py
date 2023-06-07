@@ -78,13 +78,27 @@ with open(csv_file, "r") as file:
             radix_sort_times.append(float(row[4]))
         
         else:  
-            insertionSortMedia = mediaComIC(insertion_sort_times)
-            mergeSortMedia = mediaComIC(merge_sort_times)
-            radixSortMedia = mediaComIC(radix_sort_times)
+            # ----------------------------------------------------------------------------------------------------------------------------------------------------------------
             
-            print("insertion" + str(current_sample_size) + ',' + str(insertionSortMedia[0]) + ',' + str(insertionSortMedia[1]) + ',' + str(insertionSortMedia[2]) )
-            print("merge" + str(current_sample_size) + ',' + str(mergeSortMedia[0]) + ',' + str(mergeSortMedia[1]) + ',' + str(mergeSortMedia[2]) )
-            print("radix" + str(current_sample_size) + ',' + str(radixSortMedia[0]) + ',' + str(radixSortMedia[1]) + ',' + str(radixSortMedia[2]) )
+            insertionRadix_sort_interval = intervaloDeConfianca(insertion_sort_times, radix_sort_times)
+            mergeRadix_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
+            insertionMerge_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
+
+            print("insertionMerge" + str(current_sample_size) + ',' + str(min(insertionMerge_sort_interval)) + ',' + str(max(insertionMerge_sort_interval)) )
+            print("insertionRadix" + str(current_sample_size) + ',' + str(min(insertionRadix_sort_interval)) + ',' + str(max(insertionRadix_sort_interval)) )
+            print("mergeRadix"     + str(current_sample_size) + ',' + str(min(mergeRadix_sort_interval))     + ',' + str(max(mergeRadix_sort_interval)) )
+            
+            # ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+            
+            # insertionSortMedia = mediaComIC(insertion_sort_times)
+            # mergeSortMedia = mediaComIC(merge_sort_times)
+            # radixSortMedia = mediaComIC(radix_sort_times)
+            
+            # print("insertion" + str(current_sample_size) + ',' + str(insertionSortMedia[0]) + ',' + str(insertionSortMedia[1]) + ',' + str(insertionSortMedia[2]) )
+            # print("merge" + str(current_sample_size) + ',' + str(mergeSortMedia[0]) + ',' + str(mergeSortMedia[1]) + ',' + str(mergeSortMedia[2]) )
+            # print("radix" + str(current_sample_size) + ',' + str(radixSortMedia[0]) + ',' + str(radixSortMedia[1]) + ',' + str(radixSortMedia[2]) )
+            
+            # ----------------------------------------------------------------------------------------------------------------------------------------------------------------
             
             # insertion_sort_interval = intervaloDeConfianca(insertion_sort_times, merge_sort_times)
             # merge_sort_interval = intervaloDeConfianca(merge_sort_times, radix_sort_times)
@@ -106,6 +120,8 @@ with open(csv_file, "r") as file:
             # else:
             #     analise(radix_sort_times, insertion_sort_times, "radix sort", "insertion sort")
                 
+            # ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+            
             print()
             
             #limpa as listas para a proxima iteração

@@ -52,6 +52,10 @@ confianca:
 testeT:
 	@cd ./statistic && python tTeste.py >> ../output/IntervaloMedia.csv && cd ./..
 
+images:
+	@cd ./statistic && python images.py && cd ./..
+
+
 # t:	
 # 	@cd ./output && rm ./*.out && cd ./..
 # 	@cd ./statistic && python tTeste.py >> ../output/resultados.out && cd ./..
